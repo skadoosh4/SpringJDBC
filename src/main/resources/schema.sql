@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS Student (
+    id BIGINT PRIMARY KEY,
+    age INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    major VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Teacher (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    course VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Student_Teacher (
+    id BIGINT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    teacher_id BIGINT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES Student(id) ON DELETE CASCADE,
+    FOREIGN KEY (teacher_id) REFERENCES Teacher(id) ON DELETE CASCADE
+);
